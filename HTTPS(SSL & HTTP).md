@@ -2,7 +2,7 @@ HTTPS와 SSL 인증서
 ======================
 
 ## HTTP
-HTTP란 Hypertext Transfer Protocol의 약자다. 즉 Hypertext 인 ==HTML을 전송하기 위한 통신규약을 의미==
+HTTP란 Hypertext Transfer Protocol의 약자다. 즉 Hypertext 인 ++HTML을 전송하기 위한 통신규약을 의미++
 
 ## HTTPS
 HTTPS에서 마지막의 S는 Over Secure Socket Layer의 약자로 Secure라는 말을 통해서 알 수 있듯이 ==보안이 강화된 HTTP==
