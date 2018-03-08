@@ -1,8 +1,8 @@
 # Site settings
-title:          Tale
-description:    "Minimal Jekyll theme for storytellers"
-baseurl:        "/tale"
-url:            "https://chesterhow.github.io"
+title:          Saturday 10AM
+description:    "대전 IT/개발 커뮤니티"
+baseurl:        "/"
+url:            "http://sat10am.com"
 
 # Author
 author:
