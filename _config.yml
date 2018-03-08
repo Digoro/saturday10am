@@ -1,14 +1,14 @@
 # Site settings
-title:          Saturday 10AM
+title:          Saturday10AM
 description:    "대전 IT/개발 커뮤니티"
 baseurl:        "/"
 url:            "http://sat10am.com"
 
 # Author
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name:         Saturday10Am
+  url:          http://sat10am.com
+  email:        info@sat10am.com
 
 # Build settings
 markdown:       kramdown
