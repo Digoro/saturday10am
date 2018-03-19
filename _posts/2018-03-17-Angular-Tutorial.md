@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Angular 튜토리얼(1)"
+---
+
+
+
 # Angular Tutorial😵 18/03/17
 
 
