@@ -2,11 +2,10 @@
 > *Angular는 HTTP 통신을 위한 ajax wrapper 모듈을 제공한다. 또한 RxJs의 Observable을 반환하여 비동기 처리를 수려하게 할 수 있도록 한다.*  
 
 
-##**순서**
-* 라우터 모듈 생성
-* 라우트 정의
-* 라우터 아울렛을 통한 컴포넌트 전시
-* 네비게이션 링크 생성 및 이동
+## **순서**
+* HttpClient 
+* HTTP 서비스 정의
+* With RxJs
 
 ## HttpClient 등록
 #### HttpClientModule을 추가한다.
@@ -37,7 +36,9 @@ getHeroes (): Observable<Hero[]> {
     .pipe(
       catchError(this.handleError('getHeroes', []))
     );
-}```
+}
+```
+
 * pipe()는 응답 결과를 확장한다.(pipe() 내부에 정의한 operator를 수행한다.)
 * catchError()은 Observable의 실패 시에 인터셉터하는 operator이다.  
 
