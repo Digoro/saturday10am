@@ -93,6 +93,7 @@
 | 뷰 타겟에서 데이터 소스로 단방향 | ```(target)="statement" on-target="statement"```                    | 이벤트                                    |
 | 양방향                               | ```[(target)]="expression" bindon-target="expression"```            | 양방향                                  |
 * HTML attribute vs. DOM property
+```
 The distinction between an HTML attribute and a DOM property is crucial to understanding how Angular binding works.
 
 Attributes are defined by HTML. Properties are defined by the DOM (Document Object Model).
@@ -122,6 +123,7 @@ Adding and removing the disabled attribute disables and enables the button. The 
 Setting the button's disabled property (say, with an Angular binding) disables or enables the button. The value of the property matters.
 
 The HTML attribute and the DOM property are not the same thing, even when they have the same name.
+```
 ## Property binding ( [property] )
 * Property binding or interpolation?
     * 보간은 많은 경우에 속성 바인딩에 대한 편리한 대안 입니다.
