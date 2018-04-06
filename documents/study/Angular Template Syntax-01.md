@@ -87,59 +87,45 @@
 * http://poiemaweb.com/img/databinding-changedetection.png
 
 ## Binding syntax
-| 데이터 방향                        | 문법                                                              | 타입                                     |
+* 구분
+
+| 데이터 방향                        | 문법                                                              | 타입                                     |
 |---------------------------------------|---------------------------------------------------------------------|------------------------------------------|
 | 데이터 소스에서 뷰 타겟으로 단방향 | ```{{expression}} [target]="expression" bind-target="expression"``` | 보간, 프로퍼티, 어트리뷰트, 클래스, 스타일 |
 | 뷰 타겟에서 데이터 소스로 단방향 | ```(target)="statement" on-target="statement"```                    | 이벤트                                    |
 | 양방향                               | ```[(target)]="expression" bindon-target="expression"```            | 양방향                                  |
 * HTML attribute vs. DOM property
-```
-The distinction between an HTML attribute and a DOM property is crucial to understanding how Angular binding works.
+	* HTML 속성과 DOM 요소를 구분 짓는 것은 Angular 바인딩이 어떻게 동작하는지 이해하는데 중요한 사항이다.
+		* 속성은 HTML에 의해 정의되고 요소는 DOM에 의해 정의된다.
+		* 몇몇의 HTML 속성은 요소와 1:1 매핑된다. ex) id
+		* 일부 HTML 속성에는 요소와 대응되지 않는다. ex) colspan
+		* 일부 DOM 요소는 속성과 대응되지 않는다. ex) textContent
+		* 많은 HTML 속성이 요소와 매핑되는 것 같아 보이지만 실제로 그렇지 않다.
+	* 마지막 규칙은 일반적인 규칙을 이해하기 전까지 혼란스럽다. (~~doc 더 혼란스럽다.~~)
+	* HTML 속성은 DOM 요소를 초기화 한 다음 완료된다.  요소 값은 변할 수 있지만 속성 값은 변할 수 없다.
+	* <input type="text" value="Bob"> 을 브라우저가 렌더링 할 때 "Bob"으로 초기화된 value 요소를 가진 DOM 노드에 대응하는 것을 생성한다.
+	* 사용자가 "Sally"라고 입력할 경우 value 요소는 "Sally"로 되지만 HTML value 속성은 여전히 그대로이다. input.getAttribute('value')를 수행하면 "Bob"을 반환한다.
+	* HTML 속성 value는 초기값을 지정한다. DOM 요소 value는 현재 값이다.
+	* disabled 속성은 특별한 예이다. 버튼의 disabled 요소는 버튼을 활성화하기 위해 디폴트로 false이다. disabled 속성을 추가하면 버튼의 disabled 요소가 true로 초기화되어 비활성된다.
+	* disabled 속성을 추가하거나 제거하는 것은 버튼을 활성화하거나 비활성화한다.
+* https://medium.com/@jeongwooahn/html-attribute%EC%99%80-property-%EC%9D%98-%EC%B0%A8%EC%9D%B4-d3c172cebc41
 
-Attributes are defined by HTML. Properties are defined by the DOM (Document Object Model).
-
-A few HTML attributes have 1:1 mapping to properties. id is one example.
-
-Some HTML attributes don't have corresponding properties. colspan is one example.
-
-Some DOM properties don't have corresponding attributes. textContent is one example.
-
-Many HTML attributes appear to map to properties ... but not in the way you might think!
-
-That last category is confusing until you grasp this general rule:
-
-Attributes initialize DOM properties and then they are done. Property values can change; attribute values can't.
-
-For example, when the browser renders <input type="text" value="Bob">, it creates a corresponding DOM node with a value property initialized to "Bob".
-
-When the user enters "Sally" into the input box, the DOM element value property becomes "Sally". But the HTML value attribute remains unchanged as you discover if you ask the input element about that attribute: input.getAttribute('value') returns "Bob".
-
-The HTML attribute value specifies the initial value; the DOM value property is the current value.
-
-The disabled attribute is another peculiar example. A button's disabled property is false by default so the button is enabled. When you add the disabled attribute, its presence alone initializes the button's disabled property to true so the button is disabled.
-
-Adding and removing the disabled attribute disables and enables the button. The value of the attribute is irrelevant, which is why you cannot enable a button by writing <button disabled="false">Still Disabled</button>.
-
-Setting the button's disabled property (say, with an Angular binding) disables or enables the button. The value of the property matters.
-
-The HTML attribute and the DOM property are not the same thing, even when they have the same name.
-```
 ## Property binding ( [property] )
 * Property binding or interpolation?
-    * 보간은 많은 경우에 속성 바인딩에 대한 편리한 대안 입니다.
-    * 데이터 값을 문자열로 렌더링 할 때 하나의 형식을 다른 형식보다 선호하는 기술적 이유는 없습니다.
-    * 코딩 스타일 규칙을 수립하고 규칙을 준수하고 현재 작업에 가장 자연스러운 느낌을주는 양식을 선택하는 것이 좋습니다.
-    * 요소 속성을 문자열이 아닌 데이터 값으로 설정하는 경우 속성 바인딩을 사용해야 합니다 .
+	* 보간은 많은 경우에 속성 바인딩에 대한 편리한 대안이다.
+	* 데이터 값을 문자열로 렌더링 할 때 하나의 형식을 다른 형식보다 선호하는 기술적 이유는 없다.
+	* 코딩 스타일 규칙을 수립하고 규칙을 준수하고 현재 작업에 가장 자연스러운 느낌을주는 양식을 선택하는 것이 좋다.
+	* 요소 속성을 문자열이 아닌 데이터 값으로 설정하는 경우 속성 바인딩을 사용해야 한다. 
 * Remember the brackets
     * 괄호는 템플릿 표현식을 평가하기 위해 Angular에 지시한다.
-    * 대괄호를 생략하면 Angular는 문자열을 상수로 처리하고 해당 문자열로 대상 속성 을 초기화 한다. 문자열을 평가 하지 않는다.
+    * 대괄호를 생략하면 Angular는 문자열을 상수로 처리하고 해당 문자열로 대상 속성을 초기화한다. 문자열을 평가 하지 않는다.
 ```javascript
 <!-- ERROR: HeroDetailComponent.hero expects a
      Hero object, not the string "currentHero" -->
   <app-hero-detail hero="currentHero"></app-hero-detail>
 ```
 * Content security
-	* 보간은 속성 바인딩과 스크립트 태그를 다르게 처리하지만 두 방법 모두 내용을 무해하게 렌더링합니다.
+	* 보간은 속성 바인딩과 스크립트 태그를 다르게 처리하지만 두 방법 모두 내용을 무해하게 렌더링한다.
 ```javascript
 evilTitle = 'Template <script>alert("evil never sleeps")</script>Syntax';
 ...
