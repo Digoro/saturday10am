@@ -33,74 +33,24 @@
         * Template Sytax(반)
 
     * 1주
-        * Lifecycle Hooks
-
-    * 1주
         * Component Interaction
 
-    * 1주
-        * Component Styles
-        * Dynamic Components
+    * 3주
+        * Forms
 
     * 1주
-        * Attribute Directives
-        * Structural Directives(반)
+        * Lazy Loading Feature Module
 
     * 1주
-        * Structure Directive(반)
-        * Pipes
+        * Angular Dependancy Injection
 
     * 1주
-        * User Input
-        * Template-driven Forms
-
-    * 1주
-        * Form Validation
-        * Reactive Forms(반)
-
-    * 1주
-        * Reactive Forms(반)
-        * Dynamic Forms
-
-    * 1주
-        * Observables
-        * The RxJS Library
-
-    * 1주
-        * Observables in Angular
-        * Practical Usage
-        * Compare to Other Techniques
-
-    * 1주
-        * Bootstrapping
-        * NgModules Introduction
-        * JS Modules vs NgModules
-        * Frequency Used NgModules
-        * Types of Feature Modyles
-        * Entry Components
-        * Feaure Modules
-
-    * 1주
-        * Providers
-        * Singleton Services
-        * Lazy Module Feature Modules
-        * Sharing ngModules
-        * NgModule API
-        * NgModule FAQ
-
-    * 1주
-        * The Denpendency Injection pattern
-        * Angular Denpendency Injection
         * Hierachical Injectors
 
     * 1주
-        * DI in Action
-
-    * 2주
         * HttpClient
 
     * 2주
-        * Routing & Navigation(마일스톤 1-3, 3-6)
-
-    * 2주
-        * Testing
+        * Routing & Navigation
+    
+    
