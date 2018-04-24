@@ -35,16 +35,12 @@
     * 1주
         * Component Interaction
 
-    * 3주
-        * Forms
+    * 2주
+        * Forms 
 
-    * 1주
+    * 2주
         * Lazy Loading Feature Module
-
-    * 1주
         * Angular Dependancy Injection
-
-    * 1주
         * Hierachical Injectors
 
     * 1주
