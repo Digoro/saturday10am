@@ -35,10 +35,10 @@
     * 1주
         * Component Interaction
 
-    * 2주
+    * 1주
         * Forms 
 
-    * 2주
+    * 1주
         * Lazy Loading Feature Module
         * Angular Dependancy Injection
         * Hierachical Injectors
@@ -46,7 +46,7 @@
     * 1주
         * HttpClient
 
-    * 2주
+    * 1주
         * Routing & Navigation
     
     
