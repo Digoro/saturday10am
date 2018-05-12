@@ -13,7 +13,8 @@
 # 진행 일정
 * 개요
 	* angular.io/docs
-	* 총 25주
+	* 총 10주
+	* 그 후 4주 간 실습 
 * 주차 별 학습 내용
     * 1주
         * Getting started
