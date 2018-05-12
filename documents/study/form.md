@@ -3,13 +3,13 @@
 Angular에서는 FormsModule과 ReactiveFomrsModule을 통해 이를 쉽게 개발하고 유지보수성이 높도록 하였다.
 이 외에도 Formly, Ngx-Errors등과 같은 서드파티 모듈을 이용하여 좀 더 수려한 화면을 구성할 수 있다.*
 
-* [Reactive Forms](#Reactive-Forms)
-* [FormControl](#FormControl)
-* [FormArray](#FormArray)
-* [Built-In Validator](#Built-In-Validator)
-* [Custom Validator](#Custom-Validator)
-* [Formly](#Formly)
-* [Ngx Errors](#Ngx-Errors)
+* [Reactive Forms](#reactive-forms)
+* [FormControl](#formcontrol)
+* [FormArray](#formarray)
+* [Built-In Validator](#built-in-validator)
+* [Custom Validator](#custom-validator)
+* [Formly](#formly)
+* [Ngx Errors](#ngx-errors)
 
 
 ## Reactive Forms
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
   }
 }
 ```
-## FormControl 클래스와 formControlName 디렉티브
+## FormControl
 * FormControl 인스턴스는 폼을 구성하는 기본 단위로서 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.  
 * 컴포넌트 클래스에서 FormControl 인스턴스를 직접 생성하고 formControlName 디렉티브를 사용하여 FormControl 인스턴스와 폼 컨트롤 요소를 바인딩한다.  
 
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-## FormArray 클래스와 formArrayName 디렉티브
+## FormArray
 * FormArray 인스턴스는 자바스크립트의 배열과 유사하게 FormControl 인스턴스들을 그룹화하여 관리한다. FormArray는 폼 컨트롤 요소가 동적으로 생성되어 그 갯수가 변화할 때 사용한다.  
 * formArrayName 디렉티브는 FormArray 인스턴스를 DOM 요소에 바인딩한다.  
 
@@ -316,7 +316,7 @@ export class AppComponent {
 }
 ```
 
-## Ngx-Errors
+## Ngx Errors
 * https://github.com/UltimateAngular/ngx-errors
 * Reactive form 대한 유효성 검증 오류를 쉽게 구현할 수 있는 Angular 모듈이다.
 
