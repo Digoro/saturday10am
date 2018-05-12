@@ -1,6 +1,19 @@
 # Form
+> *웹 서비스를 개발하면서 가장 많은 시간이 소요되는 부분이 입력 폼과 유효성 검증이였다.
+Angular에서는 FormsModule과 ReactiveFomrsModule을 통해 이를 쉽게 개발하고 유지보수성이 높도록 하였다.
+이 외에도 Formly, Ngx-Errors등과 같은 서드파티 모듈을 이용하여 좀 더 수려한 화면을 구성할 수 있다.*
+
+* [Reactive Forms](#Reactive-Forms)
+* [FormControl](#FormControl)
+* [FormArray](#FormArray)
+* [Built-In Validator](#Built-In-Validator)
+* [Custom Validator](#Custom-Validator)
+* [Formly](#Formly)
+* [Ngx Errors](#Ngx-Errors)
+
+
 ## Reactive Forms
-* 리액티브 폼(모델 기반 폼)은 컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 자바스크립트 객체인 폼 모델(FormGroup, FormControl, FormArray)을 직접 정의/생성한다.   
+* 리액티브 폼(모델 기반 폼)은 컴포넌트 클래스에서 폼 요소의 값 및 유효성 검증 상태를 관리하는 객체인 폼 모델(FormGroup, FormControl, FormArray)을 직접 정의/생성한다.   
 * 그리고 form* 접두사가 붙은 디렉티브(formGroup, formGroupName, formControlName, formArrayName)를 사용하여 템플릿의 폼 요소와 폼 모델을 프로퍼티 바인딩으로 연결한다.
 * 다시 말해 컴포넌트 클래스 내부에서 정의/생성한 폼 모델에 직접 접근하여 데이터 모델을 폼 모델에 반영하고 템플릿의 폼 컨트롤 요소의 상태 변화를 관찰(observe)하고 변화에 대응한다.  
 * 리액티브 폼은 FormControl, FormGroup, FormArray 클래스를 중심으로 동작한다. 이들을 사용하기 위해서 @angular/forms 패키지의 ReactiveFormsModule을 애플리케이션 모듈에 추가한다.  
@@ -50,8 +63,7 @@ export class AppComponent implements OnInit {
 ```
 ## FormControl 클래스와 formControlName 디렉티브
 * FormControl 인스턴스는 폼을 구성하는 기본 단위로서 폼 컨트롤 요소의 값이나 유효성 검증 상태를 추적하고 뷰와 폼 모델을 동기화된 상태로 유지한다.  
-* FormControl 인스턴스는 템플릿의 개별 폼 컨트롤 요소와 대응한다.  
-* 템플릿 기반 폼에서는 NgModel 디렉티브가 자신이 적용된 폼 컨트롤 요소에 해당하는 FormControl 인스턴스를 생성하였다. 리액티브 폼에서는 컴포넌트 클래스에서 FormControl 인스턴스를 직접 생성하고 formControlName 디렉티브를 사용하여 FormControl 인스턴스와 폼 컨트롤 요소를 바인딩한다.  
+* 컴포넌트 클래스에서 FormControl 인스턴스를 직접 생성하고 formControlName 디렉티브를 사용하여 FormControl 인스턴스와 폼 컨트롤 요소를 바인딩한다.  
 
 ```javascript
 import { Component, OnInit } from '@angular/core';
@@ -129,15 +141,11 @@ export class AppComponent implements OnInit {
     });
     console.log(this.userForm);
   }
-
-  // 템플릿에서 폼 모델에 접근할 수 있도록 컴포넌트 클래스에 getter를 정의한다.
-  get hobbies(): FormArray { return this.userForm.get('hobbies') as FormArray; }
 }
 ```
 
-## 리액티브 폼 유효성 검증
-* 템플릿 기반 폼은 유효성 검증이 필요한 템플릿의 폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기(Built-in validator)를 선언한다.  
-* 리액티브 폼은 템플릿의 폼 컨트롤 요소에 빌트인 검증기를 선언하지 않고 컴포넌트 클래스 내부에서 생성한 FormControl에 추가한다. FormControl에 추가된 검증기는 템플릿의 폼 컨트롤 요소의 상태가 변화할 때 마다 호출된다.  
+## Built-In Validator
+* 템플릿 기반 폼은 유효성 검증이 필요한 템플릿의 폼 컨트롤 요소에 required, pattern과 같은 빌트인 검증기(Built-in validator)를 선언한다. 
 * 리액티브 폼에서 사용 가능한 빌트인 검증기는 Validators 클래스에 정적 메소드로 정의되어 있다.  
 ```javascript
 class Validators {
@@ -154,7 +162,7 @@ class Validators {
   static composeAsync(validators: (AsyncValidatorFn|null)[]): AsyncValidatorFn|null
 }
 ```
-## 사용자 정의 검증기(Custom validator)
+## Custom validator
 * 빌트인 검증기는 사용이 간편하지만 기본적인 검증 기능만을 제공하므로 복잡한 애플리케이션의 요구 사항을 충족시키기 어려운 경우가 있다.  
 * Angular는 사용자 정의 검증기를 정의할 수 있으며 템플릿 기반 폼과 리액티브 폼 모두에 사용할 수 있다.  
 
@@ -165,16 +173,12 @@ import { AbstractControl } from '@angular/forms';
 export class PasswordValidator {
 
   static match(form: AbstractControl) {
-    // 매개변수로 전달받은 검증 대상 폼 모델에서 password와 confirmPassword을 취득
     const password = form.get('password').value;
     const confirmPassword = form.get('confirmPassword').value;
 
-    // password와 confirmPassword의 값을 비교한다.
     if (password !== confirmPassword) {
-      // 검증에 실패한 경우, 에러 객체를 반환한다.
       return { match: { password, confirmPassword }};
     } else {
-      // 검증에 성공한 경우, null을 반환한다.
       return null;
     }
   }
@@ -187,8 +191,8 @@ export class PasswordValidator {
 * 매개변수로 전달받은 검증 대상 폼 모델(위 예제의 경우, passwordGroup)에서 password와 confirmPassword을 취득하고 두 값을 비교한다.  
 * 두 값이 불일치하는 경우, 에러 내용을 나타내는 에러 객체를 반환한다.  
 * 이 에러 객체는 템플릿에서 userForm.controls.passwordGroup.errors?.match로 참조할 수 있다.  
-* . 두 값이 일치하여 오류가 발생하지 않는 경우, null을 반환한다. 이때 passwordGroup.errors는 null이 된다.  
-* . 사용자 정의 검증기는 빌트인 검증기와 동일한 방식으로 사용한다.
+* 두 값이 일치하여 오류가 발생하지 않는 경우, null을 반환한다. 이때 passwordGroup.errors는 null이 된다.  
+* 사용자 정의 검증기는 빌트인 검증기와 동일한 방식으로 사용한다.
 
 ```javascript
 import { PasswordValidator } from './password-validator';
@@ -207,7 +211,7 @@ ngOnInit() {
 ## Formly
 * https://formly-js.github.io/ngx-formly/  
 * `ngx-formly`은 JavaScript / JSON으로 구성된 양식을 사용자 정의하고 렌더링하는 할 수 있는 Angular 모듈이다.  
-* `formly-form` 컴포넌트와`FormlyConfig` 서비스는 매우 강력하며 입력 폼 컨트롤 개발 시 높은 유지 보수성을 제공한다.  
+* `formly-form` 컴포넌트와`FormlyConfig` 서비스는 입력 폼 컨트롤 개발 시 높은 유지 보수성을 제공한다.  
 * 예제) https://run.stackblitz.com/api/angular/v1?file=src%2Fapp%2Fapp.component.ts  
 
 ```javascript
